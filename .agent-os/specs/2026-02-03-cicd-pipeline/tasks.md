@@ -42,5 +42,5 @@
 - [x] 7. End-to-end validation
   - [x] 7.1 Test PR workflow (lint + build + scan, no push)
   - [x] 7.2 Test push to main (full pipeline + latest tag)
-  - [ ] 7.3 Test tag release (full pipeline + semver tags)
+  - [x] 7.3 Test tag release (full pipeline + semver tags)
   - [x] 7.4 Verify image pulls correctly from GHCR
