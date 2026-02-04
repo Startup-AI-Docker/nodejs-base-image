@@ -13,6 +13,9 @@ RUN apk update && apk upgrade --no-cache && \
     apk add --no-cache tini && \
     rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 
+# Update npm to latest for security patches
+RUN npm update -g npm && npm cache clean --force
+
 # Create non-root user for security
 RUN addgroup -g 1001 -S nodejs && \
     adduser -S nodejs -u 1001 -G nodejs -h /app -s /sbin/nologin

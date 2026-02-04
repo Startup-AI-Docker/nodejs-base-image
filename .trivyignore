@@ -2,5 +2,7 @@
 # Add CVE IDs to ignore (one per line)
 # Use sparingly - only for verified false positives or accepted risks
 
-# Example:
-# CVE-2023-12345  # False positive - not affected due to X
+# npm bundled tar vulnerability - waiting for npm to release fix
+# npm@11.8.0 (latest) still bundles tar@7.5.4, fix requires 7.5.7
+# TODO: Remove when npm releases version with tar>=7.5.7
+CVE-2026-24842
