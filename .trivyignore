@@ -6,3 +6,4 @@
 # npm@11.8.0 (latest) still bundles tar@7.5.4, fix requires 7.5.7
 # TODO: Remove when npm releases version with tar>=7.5.7
 CVE-2026-24842
+
