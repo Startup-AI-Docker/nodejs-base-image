@@ -82,26 +82,30 @@ This repository uses feature branches for development:
 - Push branch and create PR to `main`
 - Chart releases are triggered by git tags (e.g., `v1.0.0`)
 
-## Helm Chart Development
+## Docker Development
 
-### Lint the chart
+### Build image locally
 ```bash
-helm lint charts/app
+docker build -t nodejs-base-image:test .
 ```
 
-### Test a preset
+### Lint Dockerfile with Hadolint
 ```bash
-helm template test charts/app --set preset=api --set image.repository=myapp
+hadolint Dockerfile
 ```
 
-### Available presets
-- `api` - Deployment + Service + Ingress + HPA
-- `worker` - Deployment + HPA
-- `job` - Job for one-time tasks
-- `cronjob` - CronJob for scheduled tasks
-- `daemon` - DaemonSet for node-level workloads
+### Scan image with Trivy
+```bash
+# Scan for CRITICAL and HIGH vulnerabilities
+trivy image --severity CRITICAL,HIGH nodejs-base-image:test
+
+# Full scan with all severities
+trivy image nodejs-base-image:test
+
+# Scan and fail on findings (CI mode)
+trivy image --exit-code 1 --severity CRITICAL,HIGH nodejs-base-image:test
+```
 
 ### Release process
-1. Update `charts/app/Chart.yaml` version if needed
-2. Create and push a git tag: `git tag v1.0.0 && git push origin v1.0.0`
-3. GitHub Actions will publish to `oci://ghcr.io/startup-ai-infrastructure/charts/app`
+1. Create and push a git tag: `git tag v1.0.0 && git push origin v1.0.0`
+2. GitHub Actions will build, scan, and publish to `ghcr.io/startup-ai-infrastructure/nodejs-base-image`

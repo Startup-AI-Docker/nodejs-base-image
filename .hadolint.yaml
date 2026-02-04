@@ -1,0 +1,13 @@
+# Hadolint Configuration
+# https://github.com/hadolint/hadolint
+
+# Trusted registries for base images
+trustedRegistries:
+  - docker.io
+
+# Ignore specific rules
+ignored:
+  - DL3018  # Alpine package versions change frequently with updates
+
+# Strict mode: fail on any warning
+failure-threshold: warning
