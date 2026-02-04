@@ -33,10 +33,11 @@
   - [x] 5.4 Add conditional logic (only on main/tags)
   - [x] 5.5 Verify image published to GHCR with correct tags
 
-- [x] 6. Implement cleanup job
-  - [x] 6.1 Add `cleanup` job to delete old untagged versions
-  - [x] 6.2 Configure to keep 3 most recent versions
-  - [x] 6.3 Verify cleanup runs only on main branch
+- [ ] 6. ~~Implement cleanup job~~ (REMOVED - breaks multi-arch images)
+  - [ ] ~~6.1 Add `cleanup` job to delete old untagged versions~~
+  - [ ] ~~6.2 Configure to keep 3 most recent versions~~
+  - [ ] ~~6.3 Verify cleanup runs only on main branch~~
+  > **Note:** Cleanup job removed because `delete-package-versions` deletes untagged platform-specific manifests required by multi-arch images. Use manual cleanup or GHCR retention policies instead.
 
 - [x] 7. End-to-end validation
   - [x] 7.1 Test PR workflow (lint + build + scan, no push)

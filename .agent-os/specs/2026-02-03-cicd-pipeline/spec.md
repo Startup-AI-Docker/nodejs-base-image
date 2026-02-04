@@ -41,6 +41,7 @@ Cada build ejecuta Trivy scan. Si se detectan vulnerabilidades CRITICAL o HIGH, 
 - Notificaciones a Slack/Discord
 - Deployment automático a clusters
 - Matrix builds para múltiples versiones de Node.js
+- **Cleanup automático de versiones viejas** - Removido porque `delete-package-versions` elimina los manifests de plataforma (amd64/arm64) que son requeridos por imágenes multi-arch. Usar cleanup manual via GHCR UI o políticas de retención a nivel organización.
 
 ## Expected Deliverable
 

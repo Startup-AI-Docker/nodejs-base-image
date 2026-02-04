@@ -119,3 +119,17 @@ if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 ```yaml
 latest=${{ github.ref == 'refs/heads/main' }}
 ```
+
+## Removed Features
+
+### Cleanup Job (Removed)
+
+The cleanup job for deleting old untagged package versions was **removed** because it breaks multi-arch images.
+
+**Problem:** Multi-arch images use a manifest index that references platform-specific manifests (e.g., `linux/amd64`, `linux/arm64`). These platform manifests appear as "untagged" in GHCR. The `delete-package-versions` action was deleting these untagged manifests, breaking the main image index.
+
+**Symptoms:**
+- `docker pull` fails with "manifest unknown" errors
+- Image works initially but breaks after cleanup runs
+
+**Solution:** Manual cleanup via GHCR UI or use retention policies at the repository/organization level instead of automated deletion in CI.
